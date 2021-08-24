@@ -122,6 +122,7 @@ services:
       - "9090:9090"
       - "9093:9093"
       - "9091:9091"
+      - "9104:9104"
     volumes:
       - ./caddy:/etc/caddy
     environment:
@@ -137,21 +138,28 @@ services:
   mysqlexporter57:
     container_name: mysqlexporter57
     image: prom/mysqld-exporter
-    ports: 
-    - "9104:9104"
+    expose:
+      - 9104
     environment: 
     - "DATA_SOURCE_NAME=root:mypassword@(mysqld57:3306)/" 
     restart: unless-stopped
     networks:
       - monitor-net
+   command:
+      - '--collect.info_schema.processlist'
+      - '--collect.info_schema.innodb_metrics'
+      - '--collect.info_schema.tablestats'
+      - '--collect.info_schema.tables'
+      - '--collect.info_schema.userstats'
+      - '--collect.engine_innodb_status'      
     labels:
       org.label-schema.group: "monitoring"
   
   mysqlexporter8:
     container_name: mysqlexporter8
     image: prom/mysqld-exporter
-    ports: 
-    - "9104:9104"
+    expose:
+      - 9104
     environment: 
     - "DATA_SOURCE_NAME=root:mypassword@(mysqld57:3306)/" 
     restart: unless-stopped
@@ -159,7 +167,13 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
-      
+   command:
+      - '--collect.info_schema.processlist'
+      - '--collect.info_schema.innodb_metrics'
+      - '--collect.info_schema.tablestats'
+      - '--collect.info_schema.tables'
+      - '--collect.info_schema.userstats'
+      - '--collect.engine_innodb_status'        
   mysqld57:
     image: mysql:5.7
     container_name: mysqld
