@@ -145,7 +145,7 @@ services:
     restart: unless-stopped
     networks:
       - monitor-net
-   command:
+    command:
       - '--collect.info_schema.processlist'
       - '--collect.info_schema.innodb_metrics'
       - '--collect.info_schema.tablestats'
@@ -167,7 +167,7 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
-   command:
+    command:
       - '--collect.info_schema.processlist'
       - '--collect.info_schema.innodb_metrics'
       - '--collect.info_schema.tablestats'
