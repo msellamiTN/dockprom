@@ -182,7 +182,7 @@ services:
     volumes:
       - ./mysql:/etc/mysql/conf.d
       - ~/var/mysql:/var/lib/mysql
-      - mysql57-datadir:/var/lib/mysql 
+  
     expose:
       - 3306
     restart: unless-stopped
@@ -199,7 +199,7 @@ services:
     volumes:
       - ./mysql:/etc/mysql/conf.d
       - ~/var/mysql:/var/lib/mysql
-      - mysql80-datadir:/var/lib/mysql  
+ 
     expose:
       - 3306
     restart: unless-stopped
