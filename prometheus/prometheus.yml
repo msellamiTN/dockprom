@@ -39,8 +39,8 @@ scrape_configs:
     honor_labels: true
     static_configs:
       - targets: ['pushgateway:9091']
-  - job_name: mysql
-    metrics_path: /metrics
+      
+  - job_name: 'mysql'
     scrape_interval: 10s
     scrape_timeout: 10s
     static_configs:
