@@ -38,8 +38,8 @@ scrape_configs:
     scrape_interval: 10s
     honor_labels: true
     static_configs:
-      - targets: ['mysqlexporter57:9104','mysqlexporter8:9104]
-      
+      - targets: ['mysqlexporter57:9104']
+     
   
 alerting:
   alertmanagers:
