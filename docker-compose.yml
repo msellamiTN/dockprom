@@ -161,7 +161,7 @@ services:
     expose:
       - 9104
     environment: 
-    - "DATA_SOURCE_NAME=root:mypassword@(mysqld57:3306)/" 
+    - "DATA_SOURCE_NAME=root:secret@(mysqld57:3306)/" 
     restart: unless-stopped
     networks:
       - monitor-net
@@ -174,36 +174,19 @@ services:
       - '--collect.info_schema.tables'
       - '--collect.info_schema.userstats'
       - '--collect.engine_innodb_status'        
-  mysqld57:
-    image: mysql:5.7
-    container_name: mysqld
-    environment:
-      - MYSQL_ROOT_PASSWORD=mypassword
-    volumes:
-      - ./mysql:/etc/mysql/conf.d
-      - ~/var/mysql:/var/lib/mysql
   
-    expose:
-      - 3306
-    restart: unless-stopped
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "MySQL_DB"
-      
-  mysql80:
-    image: mysql:5.7
-    container_name: mysql80
+   mysqld57:
+    image: mysql:5.7.16
+    ports:
+      - 3306:3306
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
-      - MYSQL_ROOT_PASSWORD=mypassword
-    volumes:
-      - ./mysql:/etc/mysql/conf.d
-      - ~/var/mysql:/var/lib/mysql
- 
-    expose:
-      - 3306
-    restart: unless-stopped
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: docker
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
     networks:
       - monitor-net
     labels:
-      org.label-schema.group: "MySQL_DB"    
+      org.label-schema.group: "MySQL_DB"  
+      
