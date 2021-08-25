@@ -175,8 +175,9 @@ services:
       - '--collect.info_schema.userstats'
       - '--collect.engine_innodb_status'        
   
-   mysqld57:
+  mysqld57:
     image: mysql:5.7.16
+    container_name: mysqld57
     ports:
       - 3306:3306
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
