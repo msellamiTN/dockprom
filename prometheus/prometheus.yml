@@ -34,17 +34,13 @@ scrape_configs:
     static_configs:
       - targets: ['pushgateway:9091']
 
-  - job_name: 'pushgateway'
+  - job_name: 'mysql'
     scrape_interval: 10s
     honor_labels: true
     static_configs:
-      - targets: ['pushgateway:9091']
+      - targets: ['mysqlexporter57:9104','mysqlexporter8:9104]
       
-  - job_name: 'mysql'
-    scrape_interval: 10s
-    scrape_timeout: 10s
-    static_configs:
-      - targets: ['mysqlexporter57:9104','mysqlexporter8:9104']
+  
 alerting:
   alertmanagers:
   - scheme: http
