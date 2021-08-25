@@ -161,7 +161,7 @@ services:
     expose:
       - 9104
     environment: 
-    - "DATA_SOURCE_NAME=root:secret@(mysqld57:3306)/" 
+    - "DATA_SOURCE_NAME=exporter:secret@(mysqld57:3306)/" 
     restart: unless-stopped
     networks:
       - monitor-net
