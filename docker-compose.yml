@@ -3,7 +3,7 @@ version: '2.1'
 networks:
   monitor-net:
     driver: bridge
-   external:
+    external:
       name: kafka-netwrok
 
 volumes:
